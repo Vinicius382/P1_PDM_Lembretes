@@ -4,9 +4,9 @@ export class LembreteEntrada extends Component {
     render() {
         return (
             <div>
-                <input type="text" id="lembreteInput" className="w-100" placeholder='Digite seu novo lembrete'/>
+                <input type="text" id="lembreteInput" className="p-2 w-100 rounded-3" placeholder='Digite seu novo lembrete' />
 
-                <button className="btn btn-primary w-100 mt-2">
+                <button className="btn btn-outline-primary w-100 mt-3">
                     OK
                 </button>
             </div>
