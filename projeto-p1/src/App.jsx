@@ -7,44 +7,29 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      lembretes: [],
+    }
   }
 
-  state = {
-    lembretes: [
-      {
-        titulo: 'Preparar aula de programação'
-      },
-      {
-        titulo: 'Fazer feira'
-      },
-      {
-        titulo: 'Preparar marmitas'
-      },
-    ]
+
+  adicionarLembrete = (novoTitulo) => {
+    if (novoTitulo !== "") {
+      const lembretesNovos = this.state.lembretes
+      lembretesNovos.push({ titulo: novoTitulo })
+      this.setState({ lembretes: lembretesNovos })
+    }
   }
+
 
   render() {
     return (
       <div className="container mt-2">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-9">
-            <div className="card rounded-5">
-              <div className="card-body">
-                {this.state.lembretes.map(lembrete => (
-                  <LembreteLista lembrete={lembrete} />
-                ))}
-              </div>
-            </div>
-          </div>
+          <LembreteLista lembretes={this.state.lembretes} />
 
-          <div className="col-12 col-md-9 mt-4">
-            <div className="card rounded-4">
-              <div className="card-body">
-                <LembreteEntrada />
-              </div>
-            </div>
-          </div>
-
+          <LembreteEntrada adicionarLembrete={this.adicionarLembrete}
+          />
         </div>
       </div>
     )
