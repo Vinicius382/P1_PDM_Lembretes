@@ -28,12 +28,23 @@ class App extends React.Component {
     this.setState({ lembretes: lembretesFiltrados })
   }
 
+  mudarStatusFavorito = (tituloMudarFavorito) => {
+    const lembretesAtualizados = this.state.lembretes.map(lembrete => {
+      if (lembrete.titulo === tituloMudarFavorito) {
+        return {titulo: lembrete.titulo, favorito: !lembrete.favorito}
+      }
+      return lembrete
+    })
+    this.setState({lembretes: lembretesAtualizados})
+  }
+
   render() {
     return (
       <div className="container mt-2">
         <div className="row justify-content-center">
           <LembreteLista lembretes={this.state.lembretes}
             removerLembrete={this.removerLembrete}
+            mudarStatusFavorito={this.mudarStatusFavorito}
           />
 
           <LembreteEntrada adicionarLembrete={this.adicionarLembrete}

@@ -11,6 +11,11 @@ export class LembreteLista extends Component {
                                 <span className="fs-2 text-center flex-grow-1">
                                     {lembrete.titulo}
                                 </span>
+                                
+                                <i className={lembrete.favorito ? "fa-solid fa-star fa-2x m-3 text-primary" : "fa-regular fa-star fa-2x m-3 "}
+                                    onClick={() => this.props.mudarStatusFavorito(lembrete.titulo)}
+                                ></i>
+
                                 <i className="fa-solid fa-trash fa-2x m-3"
                                     onClick={() => this.props.removerLembrete(lembrete.titulo)}>
                                 </i>
