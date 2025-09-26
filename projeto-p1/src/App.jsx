@@ -21,12 +21,20 @@ class App extends React.Component {
     }
   }
 
+  removerLembrete = (tituloRemover) => {
+    const lembretesFiltrados = this.state.lembretes.filter(lembrete => {
+      return lembrete.titulo !== tituloRemover
+    })
+    this.setState({ lembretes: lembretesFiltrados })
+  }
 
   render() {
     return (
       <div className="container mt-2">
         <div className="row justify-content-center">
-          <LembreteLista lembretes={this.state.lembretes} />
+          <LembreteLista lembretes={this.state.lembretes}
+            removerLembrete={this.removerLembrete}
+          />
 
           <LembreteEntrada adicionarLembrete={this.adicionarLembrete}
           />
