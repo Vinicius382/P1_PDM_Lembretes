@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       lembretes: [],
+      mostrarFavoritos: false,
     }
   }
 
@@ -16,7 +17,7 @@ class App extends React.Component {
   adicionarLembrete = (novoTitulo) => {
     if (novoTitulo !== "") {
       const lembretesNovos = this.state.lembretes
-      lembretesNovos.push({ titulo: novoTitulo })
+      lembretesNovos.push({ titulo: novoTitulo, favorito: false })
       this.setState({ lembretes: lembretesNovos })
     }
   }
@@ -31,18 +32,38 @@ class App extends React.Component {
   mudarStatusFavorito = (tituloMudarFavorito) => {
     const lembretesAtualizados = this.state.lembretes.map(lembrete => {
       if (lembrete.titulo === tituloMudarFavorito) {
-        return {titulo: lembrete.titulo, favorito: !lembrete.favorito}
+        return { titulo: lembrete.titulo, favorito: !lembrete.favorito }
       }
       return lembrete
     })
-    this.setState({lembretes: lembretesAtualizados})
+    this.setState({ lembretes: lembretesAtualizados })
   }
+
+  mudarVisibilidadeFavoritos = () => {
+    this.setState({ mostrarFavoritos: !this.state.mostrarFavoritos })
+  }
+
+  mostrarLembretesFiltro = () => {
+    if (this.state.mostrarFavoritos) {
+      return this.state.lembretes.filter(lembrete => lembrete.favorito)
+    } else {
+      return this.state.lembretes
+    }
+  }
+
 
   render() {
     return (
       <div className="container mt-2">
         <div className="row justify-content-center">
-          <LembreteLista lembretes={this.state.lembretes}
+          <div className="col-12 col-md-9 mb-3">
+            <button className="btn btn-outline-primary p-3"
+              onClick={this.mudarVisibilidadeFavoritos}
+            >{this.state.mostrarFavoritos ? "Mostrar todos" : "Mostrar favoritos"}
+            </button>
+          </div>
+
+          <LembreteLista lembretes={this.mostrarLembretesFiltro()}
             removerLembrete={this.removerLembrete}
             mudarStatusFavorito={this.mudarStatusFavorito}
           />

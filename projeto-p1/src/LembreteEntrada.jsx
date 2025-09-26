@@ -31,7 +31,7 @@ export class LembreteEntrada extends Component {
                                 onChange={this.atualizarTitulo}
                             />
 
-                            <button className="btn btn-outline-primary w-100 mt-3"
+                            <button className="btn btn-success w-100 mt-3"
                                 onClick={this.clicarBotao}
                             >
                                 OK

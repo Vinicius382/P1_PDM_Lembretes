@@ -7,12 +7,12 @@ export class LembreteLista extends Component {
                 <div className="card rounded-5">
                     <div className="card-body">
                         {this.props.lembretes.map(lembrete => (
-                            <div className="d-flex align-items-center justify-content-center p-3 border rounded-4 m-3">
+                            <div className="d-flex align-items-center p-2 border border-4 rounded-4 m-3">
                                 <span className="fs-2 text-center flex-grow-1">
                                     {lembrete.titulo}
                                 </span>
                                 
-                                <i className={lembrete.favorito ? "fa-solid fa-star fa-2x m-3 text-primary" : "fa-regular fa-star fa-2x m-3 "}
+                                <i className={lembrete.favorito ? "fa-solid fa-star fa-2x m-3 text-warning" : "fa-regular fa-star fa-2x m-3 "}
                                     onClick={() => this.props.mudarStatusFavorito(lembrete.titulo)}
                                 ></i>
 
